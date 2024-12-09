@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structure in C</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        blockquote {
+            border-left: 4px solid #4CAF50;
+            margin: 10px 0;
+            padding-left: 15px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Structure in C</h1>
+
+    <p>A <strong>structure</strong> in C is a user-defined data type that enables us to store a collection of different data types. It is a derived data type where each element of a structure is called a member.</p>
+
+    <h2>Syntax of Structure</h2>
+
+    <pre><code>
+struct structure_name {
+    data_type member1;
+    data_type member2;
+    data_type memberN;
+};
+    </code></pre>
+
+    <h3>Example:</h3>
+
+    <pre><code>
+struct employee {
+    int id;
+    char name[20];
+    float salary;
+};
+    </code></pre>
+
+    <h2>Declaring Structure Variables</h2>
+
+    <p>There are two ways to declare a structure variable:</p>
+
+    <h3>1. By using the <code>struct</code> keyword inside the <code>main()</code> function</h3>
+
+    <pre><code>
+struct employee {
+    int id;
+    char name[50];
+    float salary;
+};
+
+struct employee e1, e2;  // Variables created inside main function
+    </code></pre>
+
+    <p>Now you can write the given code inside the <code>main()</code> function. The variables <code>e1</code> and <code>e2</code> can be used to access the values stored in the structure, similar to how objects are used in C++ or Java.</p>
+
+    <h3>2. By declaring the variable at the time of defining the structure</h3>
+
+    <pre><code>
+struct employee {
+    int id;
+    char name[50];
+    float salary;
+} e1, e2;
+    </code></pre>
+
+    <h2>Accessing Members of the Structure</h2>
+
+    <p>You can access members of a structure in two ways:</p>
+
+    <ul>
+        <li>Using the <strong>dot operator</strong> (<code>.</code>)</li>
+        <li>Using the <strong>structure pointer operator</strong> (<code>&gt;</code>)</li>
+    </ul>
+
+    <h3>Example of Accessing Structure Members</h3>
+
+    <pre><code>
+#include<stdio.h>
+#include <string.h>
+
+struct employee {
+    int id;
+    char name[50];
+} e1;  // Declaring e1 variable for the structure
+
+int main() {
+    // Store first employee information
+    e1.id = 101;
+    strcpy(e1.name, "Sonoo Jaiswal"); // Copying string into char array
+    
+    // Printing first employee information
+    printf("Employee 1 ID: %d\n", e1.id);
+    printf("Employee 1 Name: %s\n", e1.name);
+    
+    return 0;
+}
+    </code></pre>
+
+    <h3>Output:</h3>
+    <blockquote>
+        Employee 1 ID: 101<br>
+        Employee 1 Name: Sonoo Jaiswal
+    </blockquote>
+
+    <h2>Nested Structure</h2>
+
+    <p>C allows you to nest one structure inside another to create more complex data types. A structure can be nested in the following two ways:</p>
+
+    <h3>1. By Separate Structure</h3>
+
+    <pre><code>
+struct Date {
+    int dd;
+    int mm;
+    int yyyy;
+};
+
+struct Employee {
+    int id;
+    char name[20];
+    struct Date doj;  // Nested structure
+} emp1;
+    </code></pre>
+
+    <h3>2. By Embedded Structure</h3>
+
+    <p>The embedded structure enables you to define the structure inside another structure. It requires fewer lines of code but cannot be used in multiple data structures.</p>
+
+    <pre><code>
+struct Employee {
+    int id;
+    char name[20];
+    struct Date {
+        int dd;
+        int mm;
+        int yyyy;
+    } doj;  // Embedded structure
+} emp1;
+    </code></pre>
+
+    <h2>Accessing Nested Structure</h2>
+
+    <p>To access members of a nested structure, use the following notation: <code>Outer_Structure.Nested_Structure.member</code></p>
+
+    <pre><code>
+e1.doj.dd
+e1.doj.mm
+e1.doj.yyyy
+    </code></pre>
+
+    <h2>Passing Structure to Function</h2>
+
+    <p>Like other variables, a structure can also be passed to a function. You can either pass the structure members individually or pass the entire structure at once.</p>
+
+    <h3>Example:</h3>
+
+    <pre><code>
+#include<stdio.h>
+
+struct address {
+    char city[20];
+    int pin;
+    char phone[14];
+};
+
+struct employee {
+    char name[20];
+    struct address add;  // Nested structure
+};
+
+void display(struct employee);
+
+int main() {
+    struct employee emp;
+    printf("Enter employee information:\n");
+    scanf("%s %s %d %s", emp.name, emp.add.city, &emp.add.pin, emp.add.phone);
+    display(emp);
+}
+
+void display(struct employee emp) {
+    printf("Printing the details...\n");
+    printf("%s %s %d %s", emp.name, emp.add.city, emp.add.pin, emp.add.phone);
+}
+    </code></pre>
+
+    <h3>Output:</h3>
+    <blockquote>
+        Printing the details...<br>
+        John NewYork 10001 1234567890
+    </blockquote>
+
+    <h2>Structure Padding in C</h2>
+
+    <p>Structure padding is a concept in C where one or more empty bytes are added between memory addresses to align the data in memory. This ensures that the structure’s members are properly aligned to meet the requirements of the machine architecture, which may improve performance or prevent errors.</p>
+
+</body>
+</html>
