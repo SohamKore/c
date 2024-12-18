@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Functions in C</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h2 {
+            color: #4CAF50;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .card p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        .icon {
+            color: #4CAF50;
+            margin-right: 10px;
+        }
+        code {
+            background: #f4f4f9;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>String Functions in C</h1>
+        
+        <div class="card">
+            <h2><i class="fas fa-clone icon"></i>To Duplicate Lines</h2>
+            <p><code>ALT + SHIFT + ARROW KEY</code></p>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-arrows-alt icon"></i>To Move Lines</h2>
+            <p><code>ALT + ARROW KEY</code></p>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-code icon"></i>String Functions</h2>
+            <p><strong>Include:</strong> <code>#include &lt;string.h&gt;</code></p>
+            <p>This library includes the string functions described below.</p>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-font icon"></i>1. strupr(string)</h2>
+            <p>Converts the string into uppercase.</p>
+            <pre><code>strupr(str);
+puts(str);</code></pre>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-text-height icon"></i>2. strlwr(string)</h2>
+            <p>Converts the string into lowercase.</p>
+            <pre><code>strlwr(str);
+puts(str);</code></pre>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-ruler icon"></i>3. strlen(string)</h2>
+            <p>Returns the string length/size.</p>
+            <pre><code>char str[] = "abc";
+int x = strlen(str);
+printf("%d", x);</code></pre>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-copy icon"></i>4. strcpy(destination, source)</h2>
+            <p>Copies the content of the source string into the destination string.</p>
+            <pre><code>char str1[] = "";
+char str2[] = "Hello";
+strcpy(str1, str2);
+puts(str1);</code></pre>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-plus icon"></i>5. strcat(first, second)</h2>
+            <p>Concatenates/combine the second string into the first string.</p>
+            <pre><code>char str1[] = "Hello";
+char str2[] = "World";
+strcat(strcat(str1, " "), str2);
+puts(str1);</code></pre>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-equals icon"></i>6. strcmp(first, second)</h2>
+            <p>Compares the first string with the second string. If both strings are the same, it returns 0.</p>
+            <pre><code>char str1[] = "helxlo";
+char str2[] = "hellasdo";
+int result = strcmp(str1, str2);
+printf("%d", result);</code></pre>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-sync-alt icon"></i>7. strrev(string)</h2>
+            <p>Reverses the string.</p>
+            <pre><code>char str[] = "Hello";
+strrev(str);
+puts(str);</code></pre>
+        </div>
+
+    </div>
+</body>
+</html>
