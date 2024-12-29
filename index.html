@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>C Notes - Topics</title>
+    <style>
+        /* Basic styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .custom-cursor {
+
+position: fixed !important;
+pointer-events: none !important;
+z-index: 9999 !important;
+height: 70px !important; /* Adjust the height as needed */
+}
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        header h1 {
+            margin: 0;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            color: #2980b9;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+ 
+    </style>
+</head>
+<body >
+    <header>
+        <h1>C Notes - Topics</h1>
+    </header>
+
+    <section>
+        <h2>Available Topics</h2>
+        <ul id="folder-list">
+            <!-- Folder links will be dynamically added here -->
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 C Notes | All Rights Reserved</p>
+    </footer>
+<script>
+ window.onload = function() {
+    var cursor = document.createElement('img');
+      cursor.src = 'cato.gif';
+      cursor.classList.add('custom-cursor');
+      
+      // Add cursor to the document
+      document.body.appendChild(cursor);
+      
+      // Adjust cursor position based on mouse movement
+      document.addEventListener('mousemove', function(e) {
+        console.log(1)
+        var cursorOffsetX = cursor.width / 2;
+        var cursorOffsetY = cursor.height / 2;
+        cursor.style.left = (e.clientX - cursorOffsetX) + 'px';
+        cursor.style.top = (e.clientY - cursorOffsetY) + 'px';
+      });
+
+
+
+
+    const apiUrl = "https://api.github.com/repos/SohamKore/C-Notes/contents"; // Your repository URL
+    const folderList = document.getElementById("folder-list"); // Get the folder list element
+    const baseUrl = "https://sohamkore.github.io/c/";  // Your GitHub Pages base URL
+
+    // Fetch the contents of the repository
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(item => {
+                // Only display directories (type === "dir")
+                if (item.type === "dir") {
+                    // Construct the correct URL for the deployed page (based on the folder name)
+                    const folderUrl = baseUrl + item.name;
+
+                    // Create an anchor element for each folder
+                    const link = document.createElement("a");
+                    link.href = folderUrl;  // Link to the folder on GitHub Pages
+                    link.innerText = item.name; // Folder name as the link text
+                    link.target = "_blank";      // Open the link in a new tab
+
+                    // Create a list item and append the link
+                    const listItem = document.createElement("li");
+                    listItem.appendChild(link);
+                    folderList.appendChild(listItem);  // Append list item to the folder list
+                }
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching folder contents:", error);
+            folderList.innerHTML = "<li>Failed to load folder list. Please try again later.</li>";
+        });
+};
+
+
+</script>
+
+</body>
+</html>
