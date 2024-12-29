@@ -13,6 +13,13 @@
             background-color: #0d1117;
             color: #c9d1d9;
         }
+                        .custom-cursor {
+
+position: fixed !important;
+pointer-events: none !important;
+z-index: 9999 !important;
+height: 70px !important; /* Adjust the height as needed */
+}
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -176,4 +183,25 @@ printf("%s", dest); // Output: "hel"</code></pre>
 
     </div>
 </body>
+      <script>
+ window.onload = function() {
+     
+
+            var cursor = document.createElement('img');
+      cursor.src = 'https://i.pinimg.com/originals/a3/87/f7/a387f701309b32cdcad96a5245335cda.gif';
+      cursor.classList.add('custom-cursor');
+      
+      // Add cursor to the document
+      document.body.appendChild(cursor);
+      
+      // Adjust cursor position based on mouse movement
+      document.addEventListener('mousemove', function(e) {
+        console.log(1)
+        var cursorOffsetX = cursor.width / 2;
+        var cursorOffsetY = cursor.height / 2;
+        cursor.style.left = (e.clientX - cursorOffsetX) + 'px';
+        cursor.style.top = (e.clientY - cursorOffsetY) + 'px';
+      }); }
+
+    </script>
 </html>
