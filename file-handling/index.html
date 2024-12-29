@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>File Handling in C - Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+                .custom-cursor {
+
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      height: 50px; /* Adjust the height as needed */
+    }
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        header h1 {
+            margin: 0;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+        }
+        .note-heading {
+            font-size: 1.5em;
+            color: #34495e;
+            margin-bottom: 10px;
+        }
+        .note-subheading {
+            font-weight: bold;
+            margin-top: 20px;
+            color: #2980b9;
+        }
+        .syntax, .return-value, .usage, .example {
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+        .usage {
+            font-style: italic;
+        }
+        code {
+            font-family: "Courier New", monospace;
+            background-color: #ecf0f1;
+            padding: 3px 6px;
+            border-radius: 4px;
+        }
+        .function {
+            font-weight: bold;
+            color: #e67e22;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body onload="setCursor()">
+    <header>
+        <h1>File Handling in C - Functions</h1>
+    </header>
+
+    <section>
+        <div class="note-heading">1. <span class="function">fopen()</span></div>
+        <div class="syntax">Syntax: <code>FILE *fopen(const char *filename, const char *mode);</code></div>
+        <div class="return-value">Return Value:</div>
+        <ul>
+            <li>Success: Pointer to the <code>FILE</code> object.</li>
+            <li>Failure: <code>NULL</code>.</li>
+        </ul>
+        <div class="usage">Usage: Opens a file in a specified mode.</div>
+        <div class="note-subheading">Modes:</div>
+        <ul>
+            <li><code>"r"</code>: Read (file must exist).</li>
+            <li><code>"w"</code>: Write (creates/overwrites).</li>
+            <li><code>"a"</code>: Append (creates if not exists).</li>
+            <li><code>"r+"</code>: Read/Write.</li>
+            <li><code>"w+"</code>: Write/Read (overwrites).</li>
+            <li><code>"a+"</code>: Append/Read.</li>
+        </ul>
+    </section>
+
+    <section>
+        <div class="note-heading">2. <span class="function">fclose()</span></div>
+        <div class="syntax">Syntax: <code>fclose(FILE *stream);</code></div>
+        <div class="return-value">Return Value:</div>
+        <ul>
+            <li>Success: <code>0</code>.</li>
+            <li>Failure: Non-zero.</li>
+        </ul>
+        <div class="usage">Usage: Closes an open file.</div>
+    </section>
+
+    <section>
+        <div class="note-heading">3. <span class="function">fprintf()</span></div>
+        <div class="syntax">Syntax: <code>int fprintf(FILE *stream, const char *format, ...);</code></div>
+        <div class="return-value">Return Value:</div>
+        <ul>
+            <li>Success: Number of characters written.</li>
+            <li>Failure: Negative value.</li>
+        </ul>
+        <div class="usage">Usage: Writes formatted text to a file.</div>
+    </section>
+
+    <section>
+        <div class="note-heading">4. <span class="function">fscanf()</span></div>
+        <div class="syntax">Syntax: <code>int fscanf(FILE *stream, const char *format, ...);</code></div>
+        <div class="return-value">Return Value:</div>
+        <ul>
+            <li>Success: Number of items successfully read.</li>
+            <li>Failure: <code>EOF</code>.</li>
+        </ul>
+        <div class="usage">Usage: Reads formatted input from a file.</div>
+    </section>
+
+    <section>
+        <div class="note-heading">5. <span class="function">fgetc()</span></div>
+        <div class="syntax">Syntax: <code>int fgetc(FILE *stream);</code></div>
+        <div class="return-value">Return Value:</div>
+        <ul>
+            <li>Success: Character read (as int).</li>
+            <li>Failure: <code>EOF</code>.</li>
+        </ul>
+        <div class="usage">Usage: Reads a single character from a file.</div>
+    </section>
+
+    <section>
+        <div class="note-heading">6. <span class="function">fputc()</span></div>
+        <div class="syntax">Syntax: <code>int fputc(int char, FILE *stream);</code></div>
+        <div class="return-value">Return Value:</div>
+        <ul>
+            <li>Success: Character written.</li>
+            <li>Failure: <code>EOF</code>.</li>
+        </ul>
+        <div class="usage">Usage: Writes a single character to a file.</div>
+    </section>
+
+    <section>
+        <div class="note-heading">7. <span class="function">fgets()</span></div>
+        <div class="syntax">Syntax: <code>char *fgets(char *str, int n, FILE *stream);</code></div>
+        <div class="return-value">Return Value:</div>
+        <ul>
+            <li>Success: Pointer to the string.</li>
+            <li>Failure: <code>NULL</code>.</li>
+        </ul>
+        <div class="usage">Usage: Reads a line from a file.</div>
+    </section>
+
+    <section>
+        <div class="note-heading">8. <span class="function">fputs()</span></div>
+        <div class="syntax">Syntax: <code>int fputs(const char *str, FILE *stream);</code></div>
+        <div class="return-value">Return Value:</div>
+        <ul>
+            <li>Success: Non-negative value.</li>
+            <li>Failure: <code>EOF</code>.</li>
+        </ul>
+        <div class="usage">Usage: Writes a string to a file.</div>
+    </section>
+
+    <section>
+        <div class="note-heading">9. <span class="function">fread()</span></div>
+        <div class="syntax">Syntax: <code>size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);</code></div>
+        <div class="return-value">Return Value:</div>
+        <ul>
+            <li>Number of elements read.</li>
+        </ul>
+        <div class="usage">Usage: Reads binary data from a file.</div>
+    </section>
+
+    <section>
+        <div class="note-heading">10. <span class="function">fwrite()</span></div>
+        <div class="syntax">Syntax: <code>size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);</code></div>
+        <div class="return-value">Return Value:</div>
+        <ul>
+            <li>Number of elements written.</li>
+        </ul>
+        <div class="usage">Usage: Writes binary data to a file.</div>
+    </section>
+
+    <section>
+        <div class="note-heading">11. <span class="function">fseek()</span></div>
+        <div class="syntax">Syntax: <code>int fseek(FILE *stream, long offset, int whence);</code></div>
+        <div class="return-value">Return Value:</div>
+        <ul>
+            <li>Success: <code>0</code>.</li>
+            <li>Failure: Non-zero.</li>
+        </ul>
+        <div class="usage">Usage: Moves the file pointer to a specific position.</div>
+        <div class="note-subheading">Modes:</div>
+        <ul>
+            <li><code>SEEK_SET</code>: Beginning of the file.</li>
+            <li><code>SEEK_CUR</code>: Current position.</li>
+            <li><code>SEEK_END</code>: End of
+                the file.</li>
+            </ul>
+        </section>
+    
+        <section>
+            <div class="note-heading">12. <span class="function">ftell()</span></div>
+            <div class="syntax">Syntax: <code>long ftell(FILE *stream);</code></div>
+            <div class="return-value">Return Value:</div>
+            <ul>
+                <li>Success: Current file pointer position.</li>
+                <li>Failure: <code>-1</code>.</li>
+            </ul>
+            <div class="usage">Usage: Returns the current position in a file.</div>
+        </section>
+    
+        <section>
+            <div class="note-heading">13. <span class="function">rewind()</span></div>
+            <div class="syntax">Syntax: <code>void rewind(FILE *stream);</code></div>
+            <div class="return-value">Return Value: None.</div>
+            <div class="usage">Usage: Moves the file pointer to the beginning.</div>
+        </section>
+    
+        <section>
+            <div class="note-heading">14. <span class="function">remove()</span></div>
+            <div class="syntax">Syntax: <code>int remove(const char *filename);</code></div>
+            <div class="return-value">Return Value:</div>
+            <ul>
+                <li>Success: <code>0</code>.</li>
+                <li>Failure: Non-zero.</li>
+            </ul>
+            <div class="usage">Usage: Deletes a file.</div>
+        </section>
+    
+        <section>
+            <div class="note-heading">15. <span class="function">rename()</span></div>
+            <div class="syntax">Syntax: <code>int rename(const char *oldname, const char *newname);</code></div>
+            <div class="return-value">Return Value:</div>
+            <ul>
+                <li>Success: <code>0</code>.</li>
+                <li>Failure: Non-zero.</li>
+            </ul>
+            <div class="usage">Usage: Renames or moves a file.</div>
+            <div class="example">To Move a File: <code>rename("file.txt", "new_directory/file.txt")</code> — Pass directory name in the new name.</div>
+        </section>
+    
+        <section>
+            <div class="note-heading">16. <span class="function">getw() and putw() (Obsolete)</span></div>
+            <div class="syntax">
+                <code>int getw(FILE *stream);</code><br>
+                <code>int putw(int w, FILE *stream);</code>
+            </div>
+            <div class="return-value">Return Value:</div>
+            <ul>
+                <li><code>getw</code>: Returns the next integer from the file.</li>
+                <li><code>putw</code>: Returns the written integer on success; <code>EOF</code> on failure.</li>
+            </ul>
+            <div class="usage">Usage: Reads/writes integers to/from a binary file.</div>
+            <div class="note-subheading">Note:</div>
+            <div class="usage">These functions are largely replaced by <code>fread</code> and <code>fwrite</code>.</div>
+        </section>
+    
+    
+    </body>
+    <script>
+        // Function to set custom cursor
+        function setCursor() {
+          var cursor = document.createElement('img');
+          cursor.src = 'cat.png';
+          cursor.classList.add('custom-cursor');
+          
+          // Add cursor to the document
+          document.body.appendChild(cursor);
+          
+          // Adjust cursor position based on mouse movement
+          document.addEventListener('mousemove', function(e) {
+            console.log(1)
+            var cursorOffsetX = cursor.width / 2;
+            var cursorOffsetY = cursor.height / 2;
+            cursor.style.left = (e.clientX - cursorOffsetX) + 'px';
+            cursor.style.top = (e.clientY - cursorOffsetY) + 'px';
+          });
+        }
+      </script>
+    
+    </html>
+    
