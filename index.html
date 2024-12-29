@@ -58,24 +58,31 @@ height: 70px !important; /* Adjust the height as needed */
             width: 100%;
             bottom: 0;
         }
+        #block{
+            background-color: #ffe5eb;
+            border-radius: 15px;
+            
+
+        }
+        h2{
+            color: hotpink;
+        }
+        a{
+            color: rgb(193, 0, 97);
+        }
  
     </style>
 </head>
 <body >
-    <header>
-        <h1>C Notes - Topics</h1>
-    </header>
 
-    <section>
+
+    <section id="block">
         <h2>Available Topics</h2>
         <ul id="folder-list">
             <!-- Folder links will be dynamically added here -->
         </ul>
     </section>
 
-    <footer>
-        <p>&copy; 2024 C Notes | All Rights Reserved</p>
-    </footer>
 <script>
  window.onload = function() {
     var cursor = document.createElement('img');
