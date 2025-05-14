@@ -84,8 +84,7 @@ height: 70px !important; /* Adjust the height as needed */
        
            </script>
 <script>
-  const markdownContent = `Here is your content reformatted as clean, structured notes with corrected grammar, added information, and technical "under-the-hood" insights about arrays:
-
+  const markdownContent = `
 ---
 
 ## 📚 **Arrays in C/C++**
@@ -96,7 +95,7 @@ height: 70px !important; /* Adjust the height as needed */
 * Arrays allow us to **group multiple items** under a **single variable name**.
 * Each element is **indexed**, and indexing starts from **0**.
 * The last index of an array is always:
-  $`array size - 1`$
+  $\`array size - 1\`$
 
 ---
 
@@ -104,10 +103,10 @@ height: 70px !important; /* Adjust the height as needed */
 
 * **Indexing** works like a pointer offset:
 
-  ```
+  \`\`\`
   &arr[i] = base_address + (i * size_of_data_type)
-  ```
-* Array name (`arr`) acts as a pointer to the first element (`&arr[0]`).
+  \`\`\`
+* Array name (\`arr\`) acts as a pointer to the first element (\`&arr[0]\`).
 * Arrays do **not store their own size**; you must track it yourself.
 
 ---
@@ -116,25 +115,25 @@ height: 70px !important; /* Adjust the height as needed */
 
 #### 1️⃣ **1D Array**
 
-```c
+\`\`\`c
 int arr[size];                      // Declaration
 int arr[3] = {11, 22, 33};          // Initialization
-```
+\`\`\`
 
 #### 2️⃣ **2D Array (Matrix)**
 
-```c
+\`\`\`c
 int arr[rows][cols];                // Declaration
 int arr[3][3] = {                   // Initialization
     {11, 22, 33},
     {44, 55, 66},
     {77, 88, 99}
 };
-```
+\`\`\`
 
 #### 3️⃣ **3D Array (Matrix of Matrices)**
 
-```c
+\`\`\`c
 int arr[layer][rows][cols];        // Declaration
 int arr[2][2][2] = {                // Initialization
     {
@@ -146,23 +145,23 @@ int arr[2][2][2] = {                // Initialization
         {77, 88}
     }
 };
-```
+\`\`\`
 
 ---
 
 ### 📏 **Finding Size of an Array**
 
-```c
+\`\`\`c
 int arr[] = {11, 22, 33, 44, 55};
 int size = sizeof(arr) / sizeof(arr[0]);  // Total bytes ÷ element size
 printf("Size is %d\n", size);
-```
+\`\`\`
 
 🟢 **Output:**
 
-```
+\`\`\`
 Size is 5
-```
+\`\`\`
 
 > ⚠️ **Note**: This method only works for arrays declared in the same scope (not passed to functions).
 
@@ -170,20 +169,20 @@ Size is 5
 
 ### 🔁 **Iterating Over an Array**
 
-```c
+\`\`\`c
 int arr[] = {11, 22, 33, 44, 55};
 int size = sizeof(arr) / sizeof(arr[0]);
 
 for (int i = 0; i < size; i++) {
     printf("%d ", arr[i]);
 }
-```
+\`\`\`
 
 🟢 **Output:**
 
-```
+\`\`\`
 11 22 33 44 55
-```
+\`\`\`
 
 ---
 
@@ -203,20 +202,20 @@ for (int i = 0; i < size; i++) {
 
 ### ⚙️ **Array under the hood**
 
-* **Array name (`arr`)** is a pointer to the first element but is **not modifiable**.
+* **Array name (\`arr\`)** is a pointer to the first element but is **not modifiable**.
 * In memory:
 
-  ```c
+  \`\`\`c
   int arr[3] = {10, 20, 30};
   // Memory layout:
   // Address:   1000   1004   1008
   // Values:     10     20     30
-  ```
+  \`\`\`
 * Array elements are accessed by computing the memory address using:
 
-  ```
+  \`\`\`
   arr[i] == *(arr + i)
-  ```
+  \`\`\`
 * This is why pointer arithmetic works with arrays.
 
 ---
