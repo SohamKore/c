@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Markdown Viewer - Dark + Code Highlighting</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    #content {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    pre {
+      background-color: #2d2d2d;
+      border-radius: 6px;
+      padding: 15px;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+      font-size: 14px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #3c3c3c;
+      margin: 30px 0;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #ffffff;
+    }
+
+    a {
+      color: #4ea1ff;
+    }
+
+    strong {
+      color: #ffffff;
+    }
+        .custom-cursor {
+
+position: fixed !important;
+pointer-events: none !important;
+z-index: 9999 !important;
+height: 70px !important; /* Adjust the height as needed */
+}
+  </style>
+</head>
+<body>
+
+<div id="content"></div>
+    <script>
+        window.onload = function() {
+            
+       
+                   var cursor = document.createElement('img');
+                   cursor.src = 'https://i.gifer.com/1V94.gif';
+                   cursor.classList.add('custom-cursor');
+             
+             // Add cursor to the document
+             document.body.appendChild(cursor);
+             
+             // Adjust cursor position based on mouse movement
+             document.addEventListener('mousemove', function(e) {
+               console.log(1)
+               var cursorOffsetX = cursor.width / 2;
+               var cursorOffsetY = cursor.height / 2;
+               cursor.style.left = (e.clientX - cursorOffsetX) + 'px';
+               cursor.style.top = (e.clientY - cursorOffsetY) + 'px';
+             }); }
+       
+           </script>
+<script>
+  const markdownContent = `Here is your content reformatted as clean, structured notes with corrected grammar, added information, and technical "under-the-hood" insights about arrays:
+
+---
+
+## 📚 **Arrays in C/C++**
+
+### ✅ **Definition**
+
+* An **array** is a **collection of elements** of the **same data type** stored in **contiguous memory locations**.
+* Arrays allow us to **group multiple items** under a **single variable name**.
+* Each element is **indexed**, and indexing starts from **0**.
+* The last index of an array is always:
+  $`array size - 1`$
+
+---
+
+### 🧠 **Array Indexing**
+
+* **Indexing** works like a pointer offset:
+
+  ```
+  &arr[i] = base_address + (i * size_of_data_type)
+  ```
+* Array name (`arr`) acts as a pointer to the first element (`&arr[0]`).
+* Arrays do **not store their own size**; you must track it yourself.
+
+---
+
+### 🔤 **Array Types and Syntax**
+
+#### 1️⃣ **1D Array**
+
+```c
+int arr[size];                      // Declaration
+int arr[3] = {11, 22, 33};          // Initialization
+```
+
+#### 2️⃣ **2D Array (Matrix)**
+
+```c
+int arr[rows][cols];                // Declaration
+int arr[3][3] = {                   // Initialization
+    {11, 22, 33},
+    {44, 55, 66},
+    {77, 88, 99}
+};
+```
+
+#### 3️⃣ **3D Array (Matrix of Matrices)**
+
+```c
+int arr[layer][rows][cols];        // Declaration
+int arr[2][2][2] = {                // Initialization
+    {
+        {11, 22},
+        {33, 44}
+    },
+    {
+        {55, 66},
+        {77, 88}
+    }
+};
+```
+
+---
+
+### 📏 **Finding Size of an Array**
+
+```c
+int arr[] = {11, 22, 33, 44, 55};
+int size = sizeof(arr) / sizeof(arr[0]);  // Total bytes ÷ element size
+printf("Size is %d\n", size);
+```
+
+🟢 **Output:**
+
+```
+Size is 5
+```
+
+> ⚠️ **Note**: This method only works for arrays declared in the same scope (not passed to functions).
+
+---
+
+### 🔁 **Iterating Over an Array**
+
+```c
+int arr[] = {11, 22, 33, 44, 55};
+int size = sizeof(arr) / sizeof(arr[0]);
+
+for (int i = 0; i < size; i++) {
+    printf("%d ", arr[i]);
+}
+```
+
+🟢 **Output:**
+
+```
+11 22 33 44 55
+```
+
+---
+
+### 💡 **Array Properties**
+
+* Arrays are **zero-indexed**.
+* Memory is **allocated statically** for arrays (unless using dynamic memory).
+* Once declared, array **size is fixed** and **cannot be changed**.
+* Multi-dimensional arrays are stored in **row-major order**.
+* Accessing out-of-bounds indices results in **undefined behavior**.
+* When passed to functions, arrays **decay to pointers**, so:
+
+  * You lose size information.
+  * Only the address of the first element is passed.
+
+---
+
+### ⚙️ **Array under the hood**
+
+* **Array name (`arr`)** is a pointer to the first element but is **not modifiable**.
+* In memory:
+
+  ```c
+  int arr[3] = {10, 20, 30};
+  // Memory layout:
+  // Address:   1000   1004   1008
+  // Values:     10     20     30
+  ```
+* Array elements are accessed by computing the memory address using:
+
+  ```
+  arr[i] == *(arr + i)
+  ```
+* This is why pointer arithmetic works with arrays.
+
+---
+
+`;
+
+  // Render and highlight
+  const html = marked.parse(markdownContent);
+  document.getElementById('content').innerHTML = html;
+  document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+</script>
+
+</body>
+</html>
