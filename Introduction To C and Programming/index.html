@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SXHAM ;)</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        iframe{
+            height: 100vh;
+            width: 100vw;
+            border: none;
+        }
+        .custom-cursor {
+
+position: absolute !important;
+pointer-events: none !important;
+z-index: 9999 !important;
+height: 70px !important; /* Adjust the height as needed */
+}
+    </style>
+</head>
+<body>
+    <iframe src="introduction.pdf" frameborder="0"></iframe>
+
+    <script>
+        window.onload = function() {
+            
+       
+                   var cursor = document.createElement('img');
+             cursor.src = 'https://media.giphy.com/media/XCAbMJWD9dlPa/giphy.gif';
+             cursor.classList.add('custom-cursor');
+             
+             // Add cursor to the document
+             document.body.appendChild(cursor);
+             
+             // Adjust cursor position based on mouse movement
+             document.addEventListener('mousemove', function(e) {
+               console.log(1)
+               var cursorOffsetX = cursor.width / 2;
+               var cursorOffsetY = cursor.height / 2;
+               cursor.style.left = (e.clientX - cursorOffsetX) + 'px';
+               cursor.style.top = (e.clientY - cursorOffsetY) + 'px';
+             }); }
+       
+           </script>
+</body>
+
+</html>
